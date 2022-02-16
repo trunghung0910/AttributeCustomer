@@ -1,0 +1,61 @@
+<?php 
+$allPhoneNumber = $this->helper('AHT\AttributeCustomer\Helper\DataPhoneNumber')->getAllPhoneNumber();
+?>
+
+<fieldset class="fieldset address">
+    <legend class="legend"><span><?= $block->escapeHtml(__('Customer Attribute')) ?></span></legend><br>
+    <div class="field organization_name" id="organization">
+        <label for="organization_name" class="label"><span><?= $block->escapeHtml(__('Organization Name')) ?></span></label>
+        <div class="control">
+            <input type="text" name="organization_name" id="organization_name">
+        </div>
+    </div>
+    <div class="field contact_phone_number">
+        <label for="contact_phone_number" class="label"><span><?= $block->escapeHtml(__('Contact Phone Number')) ?></span></label>
+        <div class="control">
+            <select name="phone_code" id="phone_code">
+                <?php 
+                    foreach ($allPhoneNumber['countries'] as $key => $value) :
+                ?>
+                    <option value="<?= $value['code']?>"> <?= $value['name'] . '(' . $value['code'] .')'  ?> </option>
+                <?php
+                    endforeach;
+                ?>
+            </select>
+            
+            <input type="tel" name="contact_phone_number" id="contact_phone_number">
+        </div>
+    </div>
+    <div class="field company_type">
+        <label for="company_type" class="label"><span><?= $block->escapeHtml(__('Company Type')) ?></span></label>
+        <div class="control">
+            <select name="company_type" id="company_type">
+                <option value="0">Please Select</option>
+                <option value="1">Manufacturer</option>
+                <option value="2">Brand and Marketing company</option>
+                <option value="3">Extractor</option>
+                <option value="4">Orther</option>
+            </select>
+        </div>
+    </div>
+</fieldset>
+
+<script>
+    require(['jquery'], function($) {
+        $(document).ready(function () {
+            $('#organization').hide();
+
+            $('#phone_code').change(function () { 
+                var code = $('#phone_code').val();
+                $('#contact_phone_number').val('('+code+')');                
+            });
+            $('#company_type').change(function () { 
+                if($(this).val() == 4) {
+                    $('#organization').show();
+                } else {
+                    $('#organization').hide();
+                }
+            });
+        });
+    });
+</script>
