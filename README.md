@@ -1,4 +1,4 @@
-Attribuite Customer</br>
+Custom Module Attribuite Customer</br>
 I. Các bước pull code và chạy module</br>
 B1: Tạo folder app/code/AHT/AttributeCustomer</br>
 B2: Chạy trong terminal: git clone https://github.com/trunghung0910/AttributeCustomer</br>
